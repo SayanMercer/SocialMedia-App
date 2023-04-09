@@ -1,20 +1,60 @@
+import { useState } from 'react';
 import styles from '../styles/login.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { login } from '../api';
+
+
 const Login = () => {
+  const [email, setEmail] = useState('');
+  const [password,setPasssword]  = useState('');
+  const [loggingIn,setLoggingIn] = useState(false);
+  //const {addToast} =useToast();
+
+  const handleSubmit =async(e) => {
+    e.preventDefault();
+    setLoggingIn(true);
+    if (!email || !password){
+      return toast('Please enter both email and password',{
+        appearance : 'error',
+        
+      });
+
+    }
+    const response = await login (email, password);
+     if(response.success) {
+        toast('Successfully logged in',{
+        appearance : 'success',
+       });
+    
+      }else{toast(response.message,{
+        appearance : 'error',
+
+      });
+    }
+    setLoggingIn(false);
+     
+  };
+
  return (
-    <form className={styles.loginForm}>
+    <form className={styles.loginForm} onSubmit={handleSubmit}>
       <span className={styles.loginSignupHeader}>Log In</span>
 
       <div className={styles.field}>
-        <input type="email" placeholder="Email" required/>
+        <input type="email" placeholder="Email"  value={email} 
+        onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
       <div className={styles.field}>
-        <input type="password" placeholder="Password" required/>
+        <input type="password" placeholder="Password"  value={password}
+        onChange={(e) => setPasssword(e.target.value)}/>
       </div>
 
-      <div className={styles.field}>
-        <button>
-          Login
+      <div className={styles.field} >
+        <button disabled={loggingIn}>
+          {loggingIn ? 'Logging in...' : 'Log In'}
+          <ToastContainer autoClose={1000} position= "top-left"/>
         </button>
       </div>
     </form>
