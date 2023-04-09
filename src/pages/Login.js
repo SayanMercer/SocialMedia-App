@@ -2,7 +2,8 @@ import { useState } from 'react';
 import styles from '../styles/login.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-import { login } from '../api';
+//import { login } from '../api';
+import { useAuth } from '../hooks';
 
 
 const Login = () => {
@@ -10,30 +11,55 @@ const Login = () => {
   const [password,setPasssword]  = useState('');
   const [loggingIn,setLoggingIn] = useState(false);
   //const {addToast} =useToast();
+  const auth = useAuth();
+  console.log(auth);
 
-  const handleSubmit =async(e) => {
+  // const handleSubmit =async(e) => {
+  //   e.preventDefault();
+  //   setLoggingIn(true);
+  //   if (!email || !password){
+  //     return toast('Please enter both email and password',{
+  //       appearance : 'error',
+        
+  //     });
+
+  //   }
+  //   const response = await auth.login (email, password);
+  //    if(response.success) {
+  //       toast('Successfully logged in',{
+  //       appearance : 'success',
+  //      });
+    
+  //     }else{toast(response.message,{
+  //       appearance : 'error',
+
+  //     });
+  //   }
+  //   setLoggingIn(false);
+     
+   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoggingIn(true);
-    if (!email || !password){
-      return toast('Please enter both email and password',{
-        appearance : 'error',
-        
-      });
 
-    }
-    const response = await login (email, password);
-     if(response.success) {
-        toast('Successfully logged in',{
-        appearance : 'success',
-       });
-    
-      }else{toast(response.message,{
-        appearance : 'error',
-
+    if (!email || !password) {
+      return toast('Please enter both email and password', {
+        appearance: 'error',
       });
     }
+
+    const response = await auth.login(email, password);
+
+    if (response.success) {
+      toast('Successfully logged in', {
+        appearance: 'success',
+      });
+    } else {
+      toast(response.message, {
+        appearance: 'error',
+      });
+    }
+
     setLoggingIn(false);
-     
   };
 
  return (

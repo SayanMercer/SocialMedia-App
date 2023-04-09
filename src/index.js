@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
 import { App } from './components';
+import { AuthProvider } from './providers/AuthProvider';
   //import { BrowserRouter } from "react-router-dom"
 
 // ReactDOM.render(
@@ -19,9 +20,9 @@ root.render(
  
   <React.StrictMode>
   
-   
+   <AuthProvider>
         <App /> 
-      
+    </AuthProvider>  
   
   </React.StrictMode>
  
