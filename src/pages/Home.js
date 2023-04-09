@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import { Comment } from '../components';
 import styles from '../styles/home.module.css';
 
 const Home = ({ posts }) => {
+  console.log(posts);
   return (
     <div className={styles.postsList}>
       {posts.map((post) => (
@@ -48,7 +50,10 @@ const Home = ({ posts }) => {
                 <span className={styles.postCommentLikes}>22</span>
               </div>
 
-              <div className={styles.postCommentContent}>Random comment</div>
+              <div className={styles.postCommentsList}>
+                {post.comments.map((comment) => (
+                <Comment comment={comment}/>
+              ))}</div>
             </div>
           </div>
         </div>
@@ -61,6 +66,6 @@ const Home = ({ posts }) => {
 
 Home.propTypes = {
   posts : PropTypes.array.isRequired,
-}
+};
 
 export default Home;
