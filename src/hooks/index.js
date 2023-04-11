@@ -3,6 +3,7 @@ import { AuthContext } from "../providers/AuthProvider";
 import {login as userLogin} from '../api';
 import { setItemInLocalStorage,LOCALSTORAGE_TOKEN_KEY, removeItemFromLocalStorage, getItemFromLocalStorage } from "../utils";
 import jwt from 'jwt-decode';
+import { register } from "../api";
 
 
 
@@ -42,6 +43,20 @@ export const useProvideAuth=() => {
             };
         }
     };
+    const signup = async (name, email, password, confirmPassword) => {
+    const response = await register(name, email, password, confirmPassword);
+
+    if (response.success) {
+      return {
+        success: true,
+      };
+    } else {
+      return {
+        success: false,
+        message: response.message,
+      };
+    }
+  };
 
     const logout = () =>{
         setUser(null);
@@ -52,6 +67,7 @@ export const useProvideAuth=() => {
         user,
         login,
         logout,
+        signup,
         loading
     };
 };
