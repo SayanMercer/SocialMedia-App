@@ -17,7 +17,8 @@ const Signup = () => {
   const [signingUp, setSigningUp] = useState('');
   //const { addToast } = useToasts();
   const auth = useAuth();
-  const history = useNavigate();
+  //const history = useNavigate();
+  const navigate = useNavigate()
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const Signup = () => {
     if (password !== confirmPassword) {
       toast('Make sure password and confirm password matches', {
         appearance: 'error',
-        autoClose: true,
+        autoDismiss: true,
       });
 
       error = true;
@@ -44,21 +45,23 @@ const Signup = () => {
     if (error) {
       return setSigningUp(false);
     }
+    
 
     const response = await auth.signup(name, email, password, confirmPassword);
 
     if (response.success) {
-      history.push('/login');
+      //history.push('/login');
+      navigate('/login',{replace:true})
       setSigningUp(false);
 
       return toast('User registered successfully, please login now', {
         appearance: 'success',
-        autoClose: true,
+        autoDismiss: true,
       });
     } else {
       toast(response.message, {
         appearance: 'error',
-        autoClose: true,
+        autoDismiss: true,
       });
     }
 
@@ -66,7 +69,8 @@ const Signup = () => {
   };
 
   if (auth.user) {
-    return <Navigate to="/" />;
+   // return <Navigate to="/" />;
+   navigate('/',{replace:true})
   }
 
   return (

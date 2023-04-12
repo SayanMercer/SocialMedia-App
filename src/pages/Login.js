@@ -4,6 +4,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 //import { login } from '../api';
 import { useAuth } from '../hooks';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
@@ -12,6 +13,7 @@ const Login = () => {
   const [loggingIn,setLoggingIn] = useState(false);
   //const {addToast} =useToast();
   const auth = useAuth();
+  const navigate = useNavigate()
   console.log(auth);
 
   // const handleSubmit =async(e) => {
@@ -53,7 +55,12 @@ const Login = () => {
       toast('Successfully logged in', {
         appearance: 'success',
       });
-    } else {
+     navigate('/',{replace:true})
+      
+    
+    }
+     
+    else {
       toast(response.message, {
         appearance: 'error',
       });
