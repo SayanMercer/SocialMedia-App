@@ -3,7 +3,7 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { useAuth } from '../hooks';
 
 import { getPosts } from '../api';
-import { Home, Login, Signup } from '../pages';
+import { Home, Login, Signup ,Settings} from '../pages';
 import {Loader ,Navbar} from './';
 
 const About = () => {
@@ -77,7 +77,7 @@ function App() {
         {/* <Route exact path="/register" element={}>
             <Signup />
           </Route> */}
-            
+       <Route exact path="/settings" element={<Settings/>}/>     
           
       <Route exact path="/about" element={<About />} />
       <Route exact path="*" element={<Page404 />} />
