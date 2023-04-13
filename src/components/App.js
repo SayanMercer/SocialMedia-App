@@ -5,6 +5,7 @@ import { useAuth } from '../hooks';
 import { getPosts } from '../api';
 import { Home, Login, Signup ,Settings} from '../pages';
 import {Loader ,Navbar} from './';
+import { ToastContainer,toast } from 'react-toastify';
 
 const About = () => {
   return <h1>About</h1>
@@ -70,6 +71,7 @@ function App() {
       
       <Router>
       <Navbar />
+      <ToastContainer autoClose={1000} position= "top-left"/>
       <Routes>
       <Route exact path="/" element={<Home  posts={posts}/>} />
       <Route exact path="/login" element={<Login />} />
