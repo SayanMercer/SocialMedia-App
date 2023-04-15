@@ -6,6 +6,27 @@ import { getPosts } from '../api';
 import { Home, Login, Signup ,Settings} from '../pages';
 import {Loader ,Navbar} from './';
 import { ToastContainer,toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+
+// function PrivateRoute({ children, ...rest }) {
+//   const auth = useAuth();
+
+function PrivateRoute({ children, ...rest }) {
+  const auth = useAuth();
+  const Navigate = useNavigate();
+  return (
+    <Route
+      {...rest}
+      render={() => {
+        if (auth.user) {
+          return children;
+        }
+          Navigate("/login"); 
+       // return <Navigate to="/login" />;
+      }}
+    />
+  );
+}
 
 const About = () => {
   return <h1>About</h1>
@@ -79,7 +100,10 @@ function App() {
         {/* <Route exact path="/register" element={}>
             <Signup />
           </Route> */}
-       <Route exact path="/settings" element={<Settings/>}/>     
+       <Route exact path="/settings" element={<Settings/>}/>    
+        {/* <PrivateRoute exact path="/settings">
+            <Settings />
+          </PrivateRoute>  */}
           
       <Route exact path="/about" element={<About />} />
       <Route exact path="*" element={<Page404 />} />

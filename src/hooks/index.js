@@ -4,6 +4,7 @@ import {editProfile, login as userLogin} from '../api';
 import { setItemInLocalStorage,LOCALSTORAGE_TOKEN_KEY, removeItemFromLocalStorage, getItemFromLocalStorage } from "../utils";
 import jwt from 'jwt-decode';
 import { register } from "../api";
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 
@@ -11,6 +12,7 @@ import { register } from "../api";
 export const useAuth = () => {
     return useContext(AuthContext);
 }
+//const navigate = useNavigate();
 
 export const useProvideAuth=() => {
     const [user,setUser] =useState(null);
@@ -32,9 +34,9 @@ export const useProvideAuth=() => {
          console.log('response',response);
         if(response.success){
              setUser(response.data.user);
-            // setItemInLocalStorage(LOCALSTORAGE_TOKEN_KEY,
-            //     response.data.token ? response.data.token:null
-            //     );
+            setItemInLocalStorage(LOCALSTORAGE_TOKEN_KEY,
+                response.data.token ? response.data.token:null
+                );
             return {
                 success: true 
             }
@@ -79,8 +81,10 @@ export const useProvideAuth=() => {
   };
 
     const logout = () =>{
+       // const navigate = useNavigate();
         setUser(null);
         removeItemFromLocalStorage(LOCALSTORAGE_TOKEN_KEY);
+       // navigate("/login");
     };
 
     return {

@@ -1,9 +1,15 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/navbar.module.css';
 import { useAuth } from '../hooks';
 
 const Navbar = () => {
     const auth = useAuth();
+   const navigate = useNavigate();
+    const logoutpage =() =>{
+        auth.logout();
+        navigate("/login");
+    }
+    
     return (
      <div className={styles.nav}>
         <div className={styles.leftDiv}>
@@ -28,7 +34,7 @@ const Navbar = () => {
                 <ul>
                     {auth.user ?(
                  <>
-                    <li onClick={auth.logout}>
+                    <li onClick={logoutpage}>
                         Log out
                     </li>
                  </>

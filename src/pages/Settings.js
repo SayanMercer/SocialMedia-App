@@ -4,6 +4,7 @@ import { useAuth } from '../hooks';
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
 
 
 const Settings =()=>{
@@ -32,13 +33,15 @@ const Settings =()=>{
       error = true;
     }
 
-    if (password !== confirmPassword) {
+    if (password.trim() !== confirmPassword.trim()) {
+       
       toast('Password and confirm password does not match', {
         appearance: 'error',
       });
 
       error = true;
     }
+    
 
     if (error) {
       return setSavingForm(false);
@@ -50,6 +53,7 @@ const Settings =()=>{
       password,
       confirmPassword
     );
+    // console.log(response);
 
     console.log('settings response', response);
     if (response.success) {
