@@ -3,7 +3,12 @@ import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import { useAuth } from '../hooks';
 
 import { getPosts } from '../api';
-import { Home, Login, Signup ,Settings} from '../pages';
+//import { Home, Login, Signup ,Settings} from '../pages';
+import  UserProfile  from '../pages/UserProfile';
+import  Home  from '../pages/Home';
+import  Login  from '../pages/Login';
+import  Signup  from '../pages/Signup';
+import Settings from '../pages/Settings';
 import {Loader ,Navbar} from './';
 import { ToastContainer,toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -104,6 +109,10 @@ function App() {
         {/* <PrivateRoute exact path="/settings">
             <Settings />
           </PrivateRoute>  */}
+           {/* <PrivateRoute exact path="/user/:userId">
+            <UserProfile />
+          </PrivateRoute> */}
+           <Route exact path="/user/:userId" element={<UserProfile/>}/>
           
       <Route exact path="/about" element={<About />} />
       <Route exact path="*" element={<Page404 />} />

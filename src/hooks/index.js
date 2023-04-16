@@ -93,7 +93,7 @@ export const useProvideAuth=() => {
         logout,
         signup,
         loading,
-        signup,
+        
         updateUser,
     };
 };

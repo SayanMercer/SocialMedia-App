@@ -33,7 +33,7 @@ const Settings =()=>{
       error = true;
     }
 
-    if (password.trim() !== confirmPassword.trim()) {
+    if (password !== confirmPassword) {
        
       toast('Password and confirm password does not match', {
         appearance: 'error',
