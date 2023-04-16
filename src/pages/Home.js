@@ -38,7 +38,12 @@ const Home = () => {
               alt="user-pic"
             />
             <div>
-              <Link to ={`/user/${post.user._id}`}className={styles.postAuthor}>{post.user.name}</Link>
+              <Link to ={{
+                pathname: `/user/${post.user._id}`,
+                state : {
+                  user:post.user,
+                }
+              }}className={styles.postAuthor}>{post.user.name}</Link>
               <span className={styles.postTime}>a minute ago</span>
             </div>
           </div>
