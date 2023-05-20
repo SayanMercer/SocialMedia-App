@@ -41,7 +41,7 @@ const Navbar = () => {
       <div className={styles.searchContainer}>
         <img
           className={styles.searchIcon}
-          src="https://uxwing.com/wp-content/themes/uxwing/download/user-interface/search-icon.png"
+          src="https://img.icons8.com/?size=512&id=7695&format=png"
           alt=""
         />
 
