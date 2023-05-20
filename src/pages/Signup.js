@@ -95,15 +95,7 @@ const Signup = () => {
           autoComplete="new-password"
         />
       </div>
-      <div className={styles.field}>
-        <input
-          placeholder="Confirm password"
-          type="password"
-          required
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
+      
       <div className={styles.field}>
         <input
           placeholder="Password"
@@ -111,6 +103,15 @@ const Signup = () => {
           required
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
+        />
+      </div>
+      <div className={styles.field}>
+        <input
+          placeholder="Confirm password"
+          type="password"
+          required
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
       </div>
       <div className={styles.field}>
